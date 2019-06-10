@@ -58,6 +58,16 @@
         [self copyFrom:[original stringByAppendingString:@"-shm"] to:[target stringByAppendingString:@"-shm"]];
         [self copyFrom:[original stringByAppendingString:@"-wal"] to:[target stringByAppendingString:@"-wal"]];
     }
+    
+    // for using hostname in config.xml, local storage path changed
+    NSString* target2 = [appLibraryFolder stringByAppendingPathComponent:@"WebKit/WebsiteData/LocalStorage/httpsionic_app.topo.cc_0.localstorage"];
+    // Only copy data if no existing localstorage data exists yet for hostname
+    if (![[NSFileManager defaultManager] fileExistsAtPath:target2]) {
+        NSLog(@"No existing localstorage data found for hostname. Migrating data from normal wkwebview");
+        [self copyFrom:target to:target2];
+        [self copyFrom:[target stringByAppendingString:@"-shm"] to:[target2 stringByAppendingString:@"-shm"]];
+        [self copyFrom:[target stringByAppendingString:@"-wal"] to:[target2 stringByAppendingString:@"-wal"]];
+    }
 }
 
 - (void)pluginInitialize
