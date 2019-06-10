@@ -1,4 +1,4 @@
-# Migrate LocalStorage from UIWebview to Ionic WebView v4
+# Migrate LocalStorage from UIWebview to Ionic WebView v5
 
 This plugin can be used in conjunction with
 [cordova-plugin-ionic-webview](https://github.com/ionic-team/cordova-plugin-ionic-webview)
